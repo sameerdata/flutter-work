@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:mynotes/Pages/utils/routes.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -23,9 +23,9 @@ class MyApp extends StatelessWidget {
           ThemeData(brightness: Brightness.dark, primarySwatch: Colors.brown),
       initialRoute: "/",
       routes: {
-        "/": (context) => Loginpage(),
+        "/": (context) => const Loginpage(),
         MyRoutes.Homeroutes: (context) => HomePage(),
-        MyRoutes.LoginRoute: (context) => Loginpage()
+        MyRoutes.LoginRoute: (context) => const Loginpage()
       },
     );
   }

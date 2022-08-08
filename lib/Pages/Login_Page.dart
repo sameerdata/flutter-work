@@ -1,9 +1,19 @@
+// ignore_for_file: file_names, prefer_const_constructors, duplicate_ignore
+
 import 'package:flutter/material.dart';
 import 'package:mynotes/Pages/utils/routes.dart';
 
-class Loginpage extends StatelessWidget {
+class Loginpage extends StatefulWidget {
   const Loginpage({Key? key}) : super(key: key);
 
+  @override
+  State<Loginpage> createState() => _LoginpageState();
+}
+
+String name = "";
+bool changedbtn = false;
+
+class _LoginpageState extends State<Loginpage> {
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -16,14 +26,14 @@ class Loginpage extends StatelessWidget {
               fit: BoxFit.cover,
               height: 500,
             ),
-            SizedBox(
+            const SizedBox(
               height: 5.0,
             ),
             Text(
-              "Welcome",
+              "Welcome $name",
               style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10.0,
             ),
             Padding(
@@ -33,34 +43,74 @@ class Loginpage extends StatelessWidget {
                   TextFormField(
                     decoration: InputDecoration(
                         hintText: "Enter Username", labelText: "username"),
-                    style: TextStyle(fontSize: 28),
+                    onChanged: (value) {
+                      name = value;
+                      setState(() {});
+                    },
+                    style: const TextStyle(fontSize: 28),
                   ),
                   TextFormField(
                     obscureText: true,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       hintText: "Enter Password ",
                       labelText: "Password",
                     ),
-                    style: TextStyle(fontSize: 28),
+                    style: const TextStyle(fontSize: 28),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10.0,
                   ),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, MyRoutes.Homeroutes);
-                      print("hello ji");
-                    },
-                    child: Text(
-                      "login",
-                      style: TextStyle(
-                        fontSize: 28,
-                      ),
-                    ),
-                    style: TextButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 16, horizontal: 38)),
-                  )
+                  InkWell(
+                      onTap: () async {
+                        setState(() {
+                          changedbtn = true;
+                        });
+                        await Future.delayed((Duration(seconds: 2)));
+                        Navigator.pushNamed(context, MyRoutes.Homeroutes);
+                      },
+                      child: AnimatedContainer(
+                        duration: Duration(seconds: 2),
+                        width: changedbtn ? 50 : 150,
+                        alignment: Alignment.center,
+                        height: 50,
+                        // ignore: sort_child_properties_last
+                        child: changedbtn
+                            ? Icon(
+                                Icons.done,
+                                color: Colors.white,
+                              )
+                            : Text(
+                                "Login",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18),
+                              ),
+                        decoration: BoxDecoration(
+                            color:
+                                changedbtn ? Colors.white : Colors.deepPurple,
+                            borderRadius:
+                                BorderRadius.circular(changedbtn ? 50 : 8)),
+                        // color: Colors.deepPurple,
+                      ))
+
+                  //ElevatedButton(
+                  // onPressed: () {
+                  //   Navigator.pushNamed(context, MyRoutes.Homeroutes);
+                  //   // ignore: avoid_print
+                  //   print("hello ji");
+                  // },
+                  // style: TextButton.styleFrom(
+                  //     padding: const EdgeInsets.symmetric(
+                  //         vertical: 16, horizontal: 38)),
+                  // // ignore: prefer_const_constructors
+                  // child: Text(
+                  //   "login",
+                  //   style: const TextStyle(
+                  //     fontSize: 28,
+                  //   ),
+                  // ),
+                  //           )
                 ],
               ),
             )
