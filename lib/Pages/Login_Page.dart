@@ -12,6 +12,12 @@ class Loginpage extends StatefulWidget {
 
 String name = "";
 bool changedbtn = false;
+final _formkey = GlobalKey<FormState>();
+String user="user name not correct";
+
+int len = 0;
+
+hometohome(BuildContext) {}
 
 class _LoginpageState extends State<Loginpage> {
   @override
@@ -19,102 +25,110 @@ class _LoginpageState extends State<Loginpage> {
     return Material(
       color: Colors.white,
       child: SingleChildScrollView(
-        child: Column(
-          children: [
-            Image.asset(
-              "assets/images/login_image.png",
-              fit: BoxFit.cover,
-              height: 500,
-            ),
-            const SizedBox(
-              height: 5.0,
-            ),
-            Text(
-              "Welcome $name",
-              style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(
-              height: 10.0,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
-              child: Column(
-                children: [
-                  TextFormField(
-                    decoration: InputDecoration(
-                        hintText: "Enter Username", labelText: "username"),
-                    onChanged: (value) {
-                      name = value;
-                      setState(() {});
-                    },
-                    style: const TextStyle(fontSize: 28),
-                  ),
-                  TextFormField(
-                    obscureText: true,
-                    decoration: const InputDecoration(
-                      hintText: "Enter Password ",
-                      labelText: "Password",
-                    ),
-                    style: const TextStyle(fontSize: 28),
-                  ),
-                  const SizedBox(
-                    height: 10.0,
-                  ),
-                  InkWell(
-                      onTap: () async {
-                        setState(() {
-                          changedbtn = true;
-                        });
-                        await Future.delayed((Duration(seconds: 2)));
-                        Navigator.pushNamed(context, MyRoutes.Homeroutes);
-                      },
-                      child: AnimatedContainer(
-                        duration: Duration(seconds: 2),
-                        width: changedbtn ? 50 : 150,
-                        alignment: Alignment.center,
-                        height: 50,
-                        // ignore: sort_child_properties_last
-                        child: changedbtn
-                            ? Icon(
-                                Icons.done,
-                                color: Colors.white,
-                              )
-                            : Text(
-                                "Login",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18),
-                              ),
-                        decoration: BoxDecoration(
-                            color:
-                                changedbtn ? Colors.white : Colors.deepPurple,
-                            borderRadius:
-                                BorderRadius.circular(changedbtn ? 50 : 8)),
-                        // color: Colors.deepPurple,
-                      ))
-
-                  //ElevatedButton(
-                  // onPressed: () {
-                  //   Navigator.pushNamed(context, MyRoutes.Homeroutes);
-                  //   // ignore: avoid_print
-                  //   print("hello ji");
-                  // },
-                  // style: TextButton.styleFrom(
-                  //     padding: const EdgeInsets.symmetric(
-                  //         vertical: 16, horizontal: 38)),
-                  // // ignore: prefer_const_constructors
-                  // child: Text(
-                  //   "login",
-                  //   style: const TextStyle(
-                  //     fontSize: 28,
-                  //   ),
-                  // ),
-                  //           )
-                ],
+        child: Form(
+          key: _formkey,
+          child: Column(
+            children: [
+              Image.asset(
+                "assets/images/logins.png",
+                fit: BoxFit.cover,
+                height: 500,
+                alignment: Alignment.center,
               ),
-            )
-          ],
+              const SizedBox(
+                height: 5.0,
+              ),
+              Text(
+                "Welcome $name",
+                style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(
+                height: 10.0,
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
+                child: Column(
+                  children: [
+                    TextFormField(
+                      decoration: InputDecoration(
+                          hintText: "Enter Username", labelText: "username"),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return user; 
+                          
+                        } else
+                          return null;
+                      },
+                      onChanged: (value) {
+                        name = value;
+                        setState(() {});
+                      },
+                      style: const TextStyle(fontSize: 28),
+                    ),
+                    TextFormField(
+                      obscureText: true,
+                      decoration: const InputDecoration(
+                        hintText: "Enter Password ",
+                        labelText: "Password",
+                      ),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "password cannot empty";
+                        } else if (value.length < 6)
+                          return "password should be aleast 6";
+                        else
+                          return null;
+                      },
+                      style: const TextStyle(fontSize: 28),
+                    ),
+                    const SizedBox(
+                      height: 10.0,
+                    ),
+                    Material(
+                        borderRadius:
+                            BorderRadius.circular(changedbtn ? 50 : 8),
+                        color: Colors.deepPurple,
+                        child: InkWell(
+                          onTap: () async {
+                            if (_formkey.currentState!.validate()) {
+                              setState(() {
+                                changedbtn = true;
+                              });
+                              await Future.delayed((Duration(seconds: 2)));
+                              // ignore: use_build_context_synchronously
+                              await Navigator.pushNamed(
+                                  context, MyRoutes.Homeroutes);
+                              setState(() {
+                                changedbtn = false;
+                              });
+                            }
+                          },
+                          child: AnimatedContainer(
+                            duration: Duration(seconds: 2),
+                            width: changedbtn ? 50 : 150,
+                            alignment: Alignment.center,
+                            height: 50,
+                            // ignore: sort_child_properties_last
+                            child: changedbtn
+                                ? Icon(
+                                    Icons.done,
+                                    color: Colors.white,
+                                  )
+                                : Text(
+                                    "Login",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18),
+                                  ),
+                          ),
+                        )),
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
