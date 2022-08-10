@@ -1,6 +1,7 @@
 // ignore_for_file: file_names, must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:mynotes/widgets/drawer.dart';
 
 // ignore: use_key_in_widget_constructors
 class HomePage extends StatelessWidget {
@@ -23,7 +24,7 @@ class HomePage extends StatelessWidget {
           ),
         ),
       ),
-      drawer: const Drawer(),
+      drawer: mydrawer(),
     );
   }
 }

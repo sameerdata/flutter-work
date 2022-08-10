@@ -13,7 +13,7 @@ class Loginpage extends StatefulWidget {
 String name = "";
 bool changedbtn = false;
 final _formkey = GlobalKey<FormState>();
-String user="user name not correct";
+String user = "user name not correct";
 
 int len = 0;
 
@@ -55,8 +55,7 @@ class _LoginpageState extends State<Loginpage> {
                           hintText: "Enter Username", labelText: "username"),
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return user; 
-                          
+                          return "username cannot be empty ";
                         } else
                           return null;
                       },
@@ -64,7 +63,7 @@ class _LoginpageState extends State<Loginpage> {
                         name = value;
                         setState(() {});
                       },
-                      style: const TextStyle(fontSize: 28),
+                      style: const TextStyle(fontSize: 30),
                     ),
                     TextFormField(
                       obscureText: true,
@@ -80,7 +79,7 @@ class _LoginpageState extends State<Loginpage> {
                         else
                           return null;
                       },
-                      style: const TextStyle(fontSize: 28),
+                      style: const TextStyle(fontSize: 30),
                     ),
                     const SizedBox(
                       height: 10.0,
