@@ -5,7 +5,7 @@ import 'package:mynotes/widgets/drawer.dart';
 
 // ignore: use_key_in_widget_constructors
 class HomePage extends StatelessWidget {
-  final days = 3;
+  final days = 30;
   String name = "Muhammad sameer";
   var patanhi = 0;
 
@@ -13,7 +13,13 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("menu"),
+        backgroundColor: Colors.white,
+        elevation: 0.0,
+        iconTheme: IconThemeData(color: Colors.black),
+        title: const Text(
+          "menu",
+          style: TextStyle(color: Colors.black),
+        ),
       ),
       body: Center(
         // ignore: avoid_unnecessary_containers
@@ -21,6 +27,7 @@ class HomePage extends StatelessWidget {
           child: Text(
             "welcome to $days day of flutter my name is $name ",
             style: const TextStyle(fontSize: 25, fontWeight: FontWeight.w900),
+            textAlign: TextAlign.center,
           ),
         ),
       ),

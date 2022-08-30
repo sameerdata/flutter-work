@@ -32,7 +32,7 @@ class _LoginpageState extends State<Loginpage> {
               Image.asset(
                 "assets/images/logins.png",
                 fit: BoxFit.cover,
-                height: 500,
+                height: 250,
                 alignment: Alignment.center,
               ),
               const SizedBox(
@@ -40,7 +40,7 @@ class _LoginpageState extends State<Loginpage> {
               ),
               Text(
                 "Welcome $name",
-                style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               const SizedBox(
                 height: 10.0,
@@ -63,7 +63,7 @@ class _LoginpageState extends State<Loginpage> {
                         name = value;
                         setState(() {});
                       },
-                      style: const TextStyle(fontSize: 30),
+                      style: const TextStyle(fontSize: 20),
                     ),
                     TextFormField(
                       obscureText: true,
@@ -79,10 +79,10 @@ class _LoginpageState extends State<Loginpage> {
                         else
                           return null;
                       },
-                      style: const TextStyle(fontSize: 30),
+                      style: const TextStyle(fontSize: 20),
                     ),
                     const SizedBox(
-                      height: 10.0,
+                      height: 5.0,
                     ),
                     Material(
                         borderRadius:
