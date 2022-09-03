@@ -12,4 +12,8 @@ class mytheme {
 
   static ThemeData darktheme(BuildContext context) =>
       ThemeData(brightness: Brightness.dark, primarySwatch: Colors.brown);
+//colors
+
+  static Color creamcolor = Color(0xfff5f5f5);
+  static Color darkbluishcolor = Color(0xff403b58);
 }
