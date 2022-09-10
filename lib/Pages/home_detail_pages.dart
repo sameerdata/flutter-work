@@ -33,9 +33,10 @@ class home_detail_pages extends StatelessWidget {
                         MaterialStateProperty.all(mytheme.darkbluishcolor),
                     shape: MaterialStateProperty.all(
                       StadiumBorder(),
-                    )),
+                    )
+                    ),
                 child: "Add to Cart".text.xl.make(),
-              ).wh(120, 50),
+              ).wh(120, 30),
             ]).p32(),
       ),
       body: SafeArea(
