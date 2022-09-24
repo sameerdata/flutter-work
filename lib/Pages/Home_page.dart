@@ -41,7 +41,7 @@ class _HomePageState extends State<HomePage> {
     var catelogjson = await rootBundle.loadString("assets/files/catelog.json");
     var decodeData = jsonDecode(catelogjson);
     var productsData = decodeData["products"];
-    catalogmodel.items = List.from(productsData)
+    Catalogmodel.items = List.from(productsData)
         .map<Item>((item) => Item.fromMap(item))
         .toList();
     setState(() {});
@@ -63,7 +63,7 @@ class _HomePageState extends State<HomePage> {
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             CatelogHeader(),
-            if (catalogmodel.items != null && catalogmodel.items.isNotEmpty)
+            if (Catalogmodel.items != null && Catalogmodel.items.isNotEmpty)
               cateloglist().py16().expand()
             else
               CircularProgressIndicator().centered().expand(),
