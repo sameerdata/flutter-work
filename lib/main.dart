@@ -3,12 +3,14 @@ import 'package:mynotes/Pages/Home_page.dart';
 import 'package:mynotes/Pages/Login_Page.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mynotes/Pages/utils/routes.dart';
+import 'package:mynotes/core/store.dart';
 import 'package:mynotes/widgets/theme.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 import 'Pages/cart_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(VxState(store: mystore(), child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {

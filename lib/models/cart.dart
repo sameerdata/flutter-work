@@ -1,10 +1,6 @@
 import 'package:mynotes/models/Catelog.dart';
 
 class CartModel {
-  static final cartModel = CartModel._internal();
-
-  CartModel._internal();
-  factory CartModel() => cartModel;
   late Catalogmodel _catalog;
 
 //collections of ids - store ids of each item

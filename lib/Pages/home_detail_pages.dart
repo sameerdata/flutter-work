@@ -1,9 +1,9 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:mynotes/widgets/Home_widgets/Add_to_cart.dart';
 import 'package:mynotes/widgets/theme.dart';
 import 'package:velocity_x/velocity_x.dart';
-import '';
+
 import '../models/Catelog.dart';
 
 class home_detail_pages extends StatelessWidget {
